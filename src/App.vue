@@ -1,6 +1,5 @@
 <template>
-  <div class="bg-blue-100">
-    {{ selectedValues }}
+  <div class="main bg-light">
     <CustomSelect
       :modelValue="selectedValues"
       label="Custom Search with multiple prop"
@@ -34,4 +33,8 @@ export default {
 </script>
 
 <style>
+.main {
+  min-width: 100vw;
+  min-height: 100vh;
+}
 </style>

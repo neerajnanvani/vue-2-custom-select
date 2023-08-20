@@ -1,30 +1,33 @@
 <template>
-  <div class="mx-4 w-50">
+  <div class="container">
+    <div class="row">
+
+  <div class="px-3 mx-auto col-12 col-lg-6">
       <p class="mb-1">{{label}}</p>
 
       <!-- use directive v-click-outdide to hide the dropdown on out click -->
       <div 
-        class="search-container" 
+        class="search-container w-100" 
         v-click-outside="hide"
       >
         <!-- Show query on dropdown open and show selected value or selectedvalues on dropdown close -->
         <input
             type="text"
-            class="search-input w-100"
+            class="search-input w-100 rounded border border-primary"
             @click="showDropdown = true"
             @input="changeQuery"
             :placeholder="placeholder"
             :value="showDropdown ? query : (multiple ? allSelectedValues : (selectedValue !== null ? selectedValue.value : ''))"
         />
-        <button type="submit" class="search-icon"><i class="fa fa-search"></i></button>
+        <button type="submit" class="search-icon bg-white border border-white"><i class="fa fa-search"></i></button>
         <div
-            class="search-dropdown"
+            class="search-dropdown bg-white border border-primary"
             id="searchDropdown"
             :class="{ show: showDropdown }"
         >
           <div 
             v-for="option in filteredOptions" :key="option.id"
-            :class="[((multiple && selectedOptions[option.id]) || (selectedValue && option.id === selectedValue.id))  ? 'selected' : '', 'search-item']"
+            :class="[((multiple && selectedOptions[option.id]) || (selectedValue && option.id === selectedValue.id))  ? 'selected' : '', 'search-item p-2 border-bottom border-info']"
             @click="selectedOption(option)"
           >
 
@@ -42,6 +45,8 @@
           </div>
       </div>
     </div>
+  </div>
+  </div>
   </div>
 </template>
 <script>
@@ -206,24 +211,18 @@ export default {
   top: 100%;
   left: 0;
   z-index: 1;
-  background-color: #fff;
-  border: 1px solid #ccc;
   max-height: 150px;
   overflow-y: auto;
   display: none;
   width: 99%;
-  border-radius: 0 0 10% 0;
 }
 
 .search-dropdown.show {
   display: block;
-  border-radius: 0 0 10% 10%;
 }
 
 .search-item {
   cursor: pointer;
-  padding: 10px;
-  border-bottom: 1px solid gray;
 }
 
 .search-item:hover{
